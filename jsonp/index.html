@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jsonp使用案例</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script>
+		var doAlert = function (data) {
+			console.log(data);
+			for(let val in data) {
+				console.log(`data.${val} = ${data[val]}`);
+			}
+			
+		}
+		var Callback = function (data) {
+			console.log(data);
+		}
+	</script>
+	<!-- jsonp也要看服务方有没有对jsonp做处理，是否提供了jsonp的方式 -->
+	<script src="http://127.0.0.1:3000/"></script>
+	<script src="http://suggestion.baidu.com/s?wd=apple&cb=Callback"></script>
+</body>
+</html>
