@@ -28,19 +28,19 @@ console.log(people.getThis() === people);
 // let people = new People('jack');
 
 // 一个js的单例模式
-function Singal(fn) {
+function Single(fn) {
 	let result;
 	return function() {
 		return result || (result = fn.apply(this, arguments));
 	}
 }
 
-let getSingal = Singal(function() {
+let getSingle = Single(function() {
 	return {a: 1, b: 2};
 })
 
-var s1 = getSingal();
-var s2 = getSingal();
+var s1 = getSingle();
+var s2 = getSingle();
 
 console.log(s1);
 console.log(s2);
