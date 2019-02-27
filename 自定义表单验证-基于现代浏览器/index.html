@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>test</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <form action="/">
+    <div>
+      <label for="username">username</label>
+      <input type="text" id="username" name="username" maxlength="16" minlength="6" required autocomplete="off">
+    </div>
+    <div>
+      <label for="password">password</label>
+      <input type="text" id="password" name="password" autocomplete="off">
+    </div>
+    <div>
+      <label for="email">email</label>
+      <input type="email" id="email" name="email" autocomplete="off">
+    </div>
+    <div>
+      <label for="gender">gender</label>
+      <input type="text" id="gender" name="gender" pattern="male|female" autocomplete="off">
+    </div>
+    <div>
+      <label for="telphone">telphone</label>
+      <input type="text" id="telphone" name="telphone" autocomplete="off">
+    </div>
+    <div>
+      <label for="age">age</label>
+      <input type="number" id="age" name="age" min="1" max="140" autocomplete="off">
+    </div>
+    <input type="submit" value="submit">
+  </form>
+  <script src="./validator.js"></script>
+  <script>
+    var telphone = document.getElementById('telphone');
+    validator.addValidate(telphone, 'telphone', '请输入正确的手机号码格式');
+    for (let key in telphone) {
+      console.log(`telphone[${key}] = ${telphone[key]}`);
+    }
+  </script>
+</body>
+</html>

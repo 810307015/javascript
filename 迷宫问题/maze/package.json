@@ -1,0 +1,15 @@
+{
+  "name": "maze",
+  "version": "1.0.0",
+  "description": "* `src`存放资源文件。\r * `REACME.md`说明文件。\r * `src/index.js`主文件。\r * `src/maze.js`迷宫类的定义。\r * `src/myUtil.js`公共的判断方法。\r * `src/stream.js`获取输入。",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index",
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}

@@ -3,7 +3,6 @@
 // 还是以add函数为例，假如我们现在要在任何时候都能计算传进来的所有值，而且所有值都是一个或多个往函数中传值的。
 let add = (function () {
 	let args = [];
-
 	return function () {
 		if (arguments.length === 0) {
 			let result = 0;
@@ -13,15 +12,15 @@ let add = (function () {
 			return result;
 		} else {
 			Array.prototype.push.apply(args, arguments);
+			// arguments.callee在这里指的是被add返回的匿名方法
+			// console.log(arguments.callee.toString())
+			return arguments.callee;
 		}
 	}
 })();
 
-console.log(add(1)); // undefined
-console.log(add(2, 3)); // undefined
-console.log(add(4, 5, 6)); // undefined
-console.log(add(7, 8, 9, 10)); // undefined
-console.log(add()); // 55
+
+console.log(add(1)(2, 3)(4, 5, 6)(7, 8, 9, 10)()); // 55
 
 // 封装一个通用的currying方法，来实现方法的柯里化。
 let currying = function (fn) {
@@ -29,11 +28,12 @@ let currying = function (fn) {
 
 	return function () {
 		if (arguments.length === 0) {
+			// console.log(this === global); // true
 			return fn.apply(this, args);
 		} else {
 			[].push.apply(args, arguments);
 			// console.log(arguments.callee) 
-			// Function,callee为一个指向该拥有该arguments的函数的指针，在这里指的就是multiCurry这个方法。
+			// Function,callee为一个指向该拥有该arguments的函数的指针
 			return arguments.callee;
 		}
 	}
@@ -46,11 +46,8 @@ let multiCurry = currying(function () {
 	}
 	return result;
 });
-console.log(multiCurry(1)); // Function
-console.log(multiCurry(2, 3)); // Function
-console.log(multiCurry(4, 5, 6)); // Function
-console.log(multiCurry(7, 8, 9, 10)); // Function
-console.log(multiCurry()); // 3628800
+
+console.log(multiCurry(1)(2, 3)(4, 5, 6)(7, 8, 9, 10)()); // 3628800
 
 // 将apply，call借用Array的方法提取出来
 Function.prototype.uncurrying = function () {
