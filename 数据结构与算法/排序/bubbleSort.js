@@ -5,7 +5,7 @@
 // flag为true表示升序排列，false为降序排列
 const bubbleSort = function (arr, flag) {
   for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - 1; j++) {
+    for (let j = 0; j <= arr.length - i; j++) {
       if ((arr[j] > arr[j+1]) === flag) {
         let temp = arr[j];
         arr[j] = arr[j+1];
