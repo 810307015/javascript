@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="./validator.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <input id="username" type="text" name="username" value="" />
+    <span class="err_text"></span>
+    <input id="password" type="password" name="password" value="" />
+    <span class="err_text"></span>
+    <input id="number" type="number" name="number" value="" />
+    <span class="err_text"></span>
+    <script type="text/javascript">
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+      const number = document.getElementById("number");
+      const err_text = document.getElementsByClassName("err_text");
+
+      defineValidateType({
+        type: "test",
+        errMsg: "有问题",
+        validator: value => value.length > 20
+      });
+
+      const validators = [
+        {
+          type: "isRequired",
+          propName: "username",
+          errDom: err_text[0],
+          errMsg: "用户名不能为空"
+        },
+        {
+          type: "password",
+          propName: "password",
+          errDom: err_text[1]
+        },
+        {
+          type: "test",
+          propName: "number",
+          errDom: err_text[2]
+        }
+      ];
+
+      const obj = Validator({
+        target: {},
+        validators: validators
+      });
+
+      username.onchange = e => {
+        obj.username = e.target.value;
+        console.log(obj);
+      };
+
+      password.onchange = e => {
+        obj.password = e.target.value;
+        console.log(obj);
+      };
+
+      number.onchange = e => {
+        obj.number = e.target.value;
+        console.log(obj);
+      };
+    </script>
+  </body>
+</html>
